@@ -51,13 +51,16 @@
         }
 
         .btn-container {
+            position: relative;
+            width: 100%;
+            height: 120px;   /* IMPORTANT: gives the button room to move */
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 20px;
             margin-top: 30px;
-            min-height: 50px;
         }
+
 
         button {
             padding: 12px 35px;
@@ -80,7 +83,10 @@
             color: var(--deep-rose);
             border: 1px solid var(--deep-rose);
             z-index: 999;
+            transition: left 0.15s ease, top 0.15s ease;
+            position: absolute;
         }
+
 
 
         /* Success Overlay */
@@ -181,45 +187,52 @@
         const yesBtn = document.getElementById('yesBtn');
         const overlay = document.getElementById('successOverlay');
         const backBtn = document.getElementById('backBtn');
+        const container = document.querySelector('.btn-container');
 
         const moveButton = () => {
-            // Ensure position is fixed so it can jump anywhere
-            noBtn.style.position = 'fixed';
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
 
-            // Calculate safe boundaries with a 50px padding to ensure it's never off-edge
-            const padding = 50;
-            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+            const padding = 10;
 
-            // Math.max ensures the random value never goes below the padding
-            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
-            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+            const maxX = containerRect.width - btnRect.width - padding;
+            const maxY = containerRect.height - btnRect.height - padding;
 
-            noBtn.style.left = `${randomX}px`;
-            noBtn.style.top = `${randomY}px`;
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+
+            noBtn.style.left = `${Math.max(0, x)}px`;
+            noBtn.style.top = `${Math.max(0, y)}px`;
         };
 
-
-        // Trigger movement
+        // Desktop
         noBtn.addEventListener('mouseenter', moveButton);
+
+        // Mobile
         noBtn.addEventListener('touchstart', (e) => {
             e.preventDefault();
             moveButton();
         });
 
-        // Show success screen
         yesBtn.addEventListener('click', () => {
             overlay.style.display = 'flex';
         });
 
-        // Hide success screen and reset No button
         backBtn.addEventListener('click', () => {
             overlay.style.display = 'none';
-            // Reset No button to original flow
             noBtn.style.position = 'relative';
             noBtn.style.left = 'auto';
             noBtn.style.top = 'auto';
         });
+
+        window.addEventListener('load', () => {
+            noBtn.style.position = 'relative';
+            noBtn.style.left = 'auto';
+            noBtn.style.top = 'auto';
+        });
+
+
     </script>
+
 </body>
 </html>
