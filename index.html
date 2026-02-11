@@ -22,7 +22,7 @@
             height: 100vh;
             background: linear-gradient(135deg, #fff0f3 0%, #ffafcc 100%);
             font-family: 'Montserrat', sans-serif;
-            overflow: hidden; /* Prevents scrollbars from appearing when button moves */
+            overflow: hidden;
             text-align: center;
         }
 
@@ -53,7 +53,7 @@
         .btn-container {
             position: relative;
             width: 100%;
-            height: 120px;   /* IMPORTANT: gives the button room to move */
+            height: 120px;  
             display: flex;
             justify-content: center;
             align-items: center;
@@ -89,7 +89,6 @@
 
 
 
-        /* Success Overlay */
         #successOverlay {
             position: fixed;
             inset: 0;
@@ -98,7 +97,7 @@
             align-items: center;
             z-index: 1000;
 
-            background-image: url('test.jpg');
+            background-image: url('final.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -108,7 +107,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: rgba(255, 255, 255, 0.4); /* increase transparency here */
+            background: rgba(255, 255, 255, 0.1); 
             backdrop-filter: blur(4px);
         }
 
@@ -162,7 +161,7 @@
         <h1>Mary,</h1>
         <p class="subtitle">Our first Valentine's as husband & wife</p>
         <div>
-            <img src="prop.jpeg" width="170" alt="Heart">
+            <img src="prop.jpeg" width="190" alt="Heart">
         </div>
         <h2 style="font-weight: 400;">Will you be my Valentine?</h2>
         
@@ -177,7 +176,7 @@
             <div class="heart">❤️</div>
             <h2>YAAAYYY..!</h2>
             <p>I love you!</p>
-            <p style="font-style: italic; color: #888;">Happy 1st Valentine's Day!</p>
+            <p>Happy First Valentine's Day!</p>
             <button id="backBtn">Go back</button>
         </div>
     </div>
